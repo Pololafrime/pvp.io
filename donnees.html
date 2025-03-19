@@ -1,0 +1,89 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affichage des Données Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Uploader un fichier Excel</h1>
+    <input type="file" id="fileInput">
+    <button onclick="uploadFile()">Envoyer</button>
+
+    <table id="dataTable"></table>
+
+    <script>
+        function uploadFile() {
+            let fileInput = document.getElementById('fileInput');
+            let file = fileInput.files[0];
+
+            if (!file) {
+                alert('Veuillez sélectionner un fichier Excel');
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append('file', file);
+
+            fetch('http://127.0.0.1:5000/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayData(data);
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+
+        function displayData(data) {
+            let table = document.getElementById('dataTable');
+            table.innerHTML = '';
+
+            if (data.length === 0) {
+                table.innerHTML = '<tr><td>Aucune donnée trouvée</td></tr>';
+                return;
+            }
+
+            let headerRow = document.createElement('tr');
+            Object.keys(data[0]).forEach(key => {
+                let th = document.createElement('th');
+                th.textContent = key;
+                headerRow.appendChild(th);
+            });
+            table.appendChild(headerRow);
+
+            data.forEach(row => {
+                let tr = document.createElement('tr');
+                Object.values(row).forEach(value => {
+                    let td = document.createElement('td');
+                    td.textContent = value;
+                    tr.appendChild(td);
+                });
+                table.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>
