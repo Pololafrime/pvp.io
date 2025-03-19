@@ -28,13 +28,29 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Bienvenue sur notre site</h1>
-        <p>Veuillez entrer votre texte ci-dessous :</p>
-        <textarea placeholder="Écrivez ici..."></textarea>
+        <h1>Bienvenue sur le site PvP</h1>
+        <p>Veuillez cliquez pour y entrer</p>
+        <form action="page_suivante.html" method="GET">  
+            <br>
+            <button type="submit">Envoyer</button>
+        </form>
     </div>
 </body>
 </html>
+
