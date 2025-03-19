@@ -11,11 +11,12 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f4f4f4;
+            background: url('fond.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
         .container {
             text-align: center;
-            background: white;
+            background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -45,7 +46,7 @@
 <body>
     <div class="container">
         <h1>Bienvenue sur le site PvP</h1>
-        <p>Veuillez cliquez pour y entrer</p>
+        <p>Veuillez cliquer pour y entrer</p>
         <form action="page_suivante.html" method="GET">  
             <br>
             <button type="submit">Envoyer</button>
