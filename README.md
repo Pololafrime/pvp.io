@@ -47,7 +47,7 @@
     <div class="container">
         <h1>Bienvenue sur le site PvP</h1>
         <p>Veuillez cliquer pour y entrer</p>
-        <form action="page_suivante.html" method="GET">  
+        <form action="log.html" method="GET">  
             <br>
             <button type="submit">Envoyer</button>
         </form>
